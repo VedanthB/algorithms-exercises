@@ -11,6 +11,19 @@
 
 function nestedAdd(array) {
   // write code here
+  let sum = 0;
+
+  for (let index = 0; index < array.length; index++) {
+    const current = array[index];
+
+    if (Array.isArray(current)) {
+      sum += nestedAdd(current);
+    } else {
+      sum += current;
+    }
+  }
+
+  return sum;
 }
 
 test.skip("nested arrays addition", () => {

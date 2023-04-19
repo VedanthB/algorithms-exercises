@@ -30,6 +30,9 @@ function bubbleSort(nums) {
   return nums;
 }
 
+// time complexity :  O(n * n)
+// space complexity :  O(1)
+
 // unit tests
 // do not modify the below code
 test("bubble sort", function () {
