@@ -9,8 +9,48 @@
 
 */
 
+function getDegit(number, place, longestNumber) {
+  const string = number.toString();
+  const size = number.length;
+
+  const mod = (longestNumber = size);
+
+  return string[place - mod] || 0;
+}
+
+function getLongestNumber(array) {
+  let longest = 0;
+
+  for (let index = 0; index < array.length; index++) {
+    const currentLength = array[index].toString().length;
+
+    longest = currentLength > longest ? currentLength : longest;
+  }
+
+  return longest;
+}
+
 function radixSort(array) {
   // code goes here
+  const longestNumber = getLongestNumber(array);
+
+  const buckets = new Array(10).fill().map(() => []);
+
+  for (let index = longestNumber - 1; index >= 0; index--) {
+    while (array.length) {
+      const current = array.shift();
+
+      buckets[getDegit(current, index, longestNumber)].push(current);
+    }
+
+    for (let j = 0; j < array.length; j++) {
+      while (buckets[j].length) {
+        array.push(buckets[j].shift());
+      }
+    }
+  }
+
+  return array;
 }
 
 // unit tests
